@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	pbapi "github.com/showyquasar88/go-mall/demo/demo_proto/kitex_gen/pbapi"
 	"github.com/showyquasar88/go-mall/demo/demo_proto/biz/service"
+	pbapi "github.com/showyquasar88/go-mall/demo/demo_proto/kitex_gen/pbapi"
 )
 
 // EchoServiceImpl implements the last service interface defined in the IDL.
