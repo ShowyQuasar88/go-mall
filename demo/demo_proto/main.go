@@ -8,7 +8,9 @@ import (
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
+	"github.com/joho/godotenv"
 	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
+	"github.com/showyquasar88/go-mall/demo/demo_proto/biz/dal"
 	"github.com/showyquasar88/go-mall/demo/demo_proto/conf"
 	"github.com/showyquasar88/go-mall/demo/demo_proto/kitex_gen/pbapi/echoservice"
 	"go.uber.org/zap/zapcore"
@@ -29,6 +31,14 @@ func main() {
 }
 
 func kitexInit() (opts []server.Option) {
+
+	// read .env
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
+	dal.Init()
+
 	// address
 	addr, err := net.ResolveTCPAddr("tcp", conf.GetConf().Kitex.Address)
 	if err != nil {
