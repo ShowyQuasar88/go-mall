@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/showyquasar88/go-mall/demo/demo_proto/biz/model"
 	"github.com/showyquasar88/go-mall/demo/demo_proto/conf"
 
 	"gorm.io/driver/mysql"
@@ -32,15 +33,5 @@ func Init() {
 		panic(err)
 	}
 
-	type Version struct {
-		Version string
-	}
-
-	var v Version
-
-	err = DB.Raw("select version() as version").Scan(&v).Error
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(v)
+	DB.AutoMigrate(&model.User{})
 }
