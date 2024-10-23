@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	api "github.com/showyquasar88/go-mall/demo/demo_thrift/kitex_gen/api"
 )
 
@@ -17,6 +18,9 @@ func NewEchoService(ctx context.Context) *EchoService {
 // Run create note info
 func (s *EchoService) Run(req *api.Request) (resp *api.Response, err error) {
 	// Finish your business logic.
+
+	info := rpcinfo.GetRPCInfo(s.ctx)
+	fmt.Println(info.From().ServiceName())
 
 	return &api.Response{Message: fmt.Sprint("服务端接收到了你的响应：", req.Message)}, nil
 }
