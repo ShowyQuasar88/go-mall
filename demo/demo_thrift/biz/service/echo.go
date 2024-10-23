@@ -2,6 +2,8 @@ package service
 
 import (
 	"context"
+	"fmt"
+
 	api "github.com/showyquasar88/go-mall/demo/demo_thrift/kitex_gen/api"
 )
 
@@ -16,5 +18,5 @@ func NewEchoService(ctx context.Context) *EchoService {
 func (s *EchoService) Run(req *api.Request) (resp *api.Response, err error) {
 	// Finish your business logic.
 
-	return &api.Response{Message: req.Message}, nil
+	return &api.Response{Message: fmt.Sprint("服务端接收到了你的响应：", req.Message)}, nil
 }
